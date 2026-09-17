@@ -1,0 +1,52 @@
+2026-09-17 07:11:58.077: [INFO] CurrentProfilePath: C:\Users\user\OneDrive\Desktop\tarot-booth\tarot-booth\tests\.edge-cdp\Default
+2026-09-17 07:11:58.077: [INFO] Profiles total count: 1
+2026-09-17 07:11:58.077: [INFO] Profile: name=プロファイル 1 path=C:\Users\user\OneDrive\Desktop\tarot-booth\tarot-booth\tests\.edge-cdp\Default lastActive=null
+2026-09-17 07:11:58.077: [INFO] LastUsedProfileDir: C:\Users\user\OneDrive\Desktop\tarot-booth\tarot-booth\tests\.edge-cdp\Default
+2026-09-17 07:11:58.077: [INFO] VisibilityChanged: 0
+2026-09-17 07:11:58.087: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.087: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.088: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.088: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.088: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.088: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.088: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.089: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.089: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.089: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.094: [INFO] OnDoneLoading sync enabled: 0
+2026-09-17 07:11:58.094: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-09-17 07:11:58.094: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-09-17 07:11:58.094: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-09-17 07:11:58.123: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.416: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-09-17 07:11:58.417: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-09-17 07:11:58.419: [INFO] Primary account changed.
+2026-09-17 07:11:58.419: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2026-09-17 07:11:58.422: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-09-17 07:11:58.429: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-09-17 07:12:01.022: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.022: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.022: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.022: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.022: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.022: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.023: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.024: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.024: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.024: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.024: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.024: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.024: [INFO] BookmarkNodeAdded, ABU: 0
+2026-09-17 07:12:01.375: [INFO] Sync initialization duration: 2892ms

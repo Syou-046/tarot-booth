@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>占い師のタロット</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Zen+Old+Mincho:wght@600;900&display=swap">
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+
+<div class="app">
+  <header>
+    <div class="film"><img src="assets/ui/movie-title-logo.png" alt="魔法使いちゃんは素直になれやしない"></div>
+    <h1>占い師のタロット</h1>
+    <p class="guide" id="guide">聞きたいことを、心の中で思い浮かべてね</p>
+  </header>
+
+  <div class="spread" id="spread" hidden></div>
+
+  <div class="table">
+    <div class="fan" id="fan"></div>
+
+    <div class="panel" id="setup">
+      <details class="info-box" open>
+        <summary>占いの約束</summary>
+        <ul>
+          <li>占いは、今の気持ちを映すものです</li>
+          <li><ruby>運命<rt>うんめい</rt></ruby>には流れがありますが、あなたの行動も大切です</li>
+          <li>質問はできるだけ具体的にしてね</li>
+          <li>命に関わること、他の人の秘密、誰かを傷つけること、まだ受けていないテストの結果は占いません</li>
+          <li>同じ質問を何度も繰り返さないでね</li>
+          <li>もう答えが分かっていることは、占わなくても大丈夫</li>
+        </ul>
+      </details>
+
+      <div class="field-col">
+        <label for="question">聞きたいこと（書かなくても大丈夫だよ）</label>
+        <textarea id="question" maxlength="60" rows="2" placeholder="ここに書いてね"></textarea>
+      </div>
+
+      <div class="field">
+        <span>引くカードの枚数</span>
+        <div class="stepper">
+          <button type="button" id="minus" aria-label="減らす">−</button>
+          <output id="count">3</output>
+          <button type="button" id="plus" aria-label="増やす">+</button>
+        </div>
+        <span>枚</span>
+      </div>
+
+      <details class="info-box">
+        <summary>カードの並べ方について</summary>
+        <p>選んだカードを順番に並べます。</p>
+        <p><strong>カードの見方：</strong></p>
+        <ul>
+          <li>自由に読む — 先にカードの<ruby>意味<rt>いみ</rt></ruby>を決めず、出たカードから感じ取ります</li>
+          <li>出来事の流れ — <ruby>原因<rt>げんいん</rt></ruby>・<ruby>経過<rt>けいか</rt></ruby>・<ruby>結果<rt>けっか</rt></ruby></li>
+          <li>時間の流れ — <ruby>過去<rt>かこ</rt></ruby>・<ruby>現在<rt>いま</rt></ruby>・<ruby>未来<rt>みらい</rt></ruby></li>
+        </ul>
+        <p>心の中で、どんなふうに読むか決めてね。どの方法でも、カードの出方は変わりません。</p>
+      </details>
+
+      <button class="btn" id="startBtn" type="button">カードを引く</button>
+      <p class="note">78枚のカードを使います。カードは逆さま（<ruby>逆位置<rt>ぎゃくいち</rt></ruby>）で出ることもあります。<br>この占いは楽しむためのもので、未来を決めるものではありません。</p>
+    </div>
+
+    <div class="panel" id="actions" hidden>
+      <div class="row">
+        <button class="ghost" id="extraBtn" type="button">補足カードを引く</button>
+        <button class="ghost" id="saveBtn" type="button">画像で保存</button>
+        <button class="ghost" id="qrBtn" type="button">QRコードで結果を持ち帰る</button>
+      </div>
+      <div id="qrArea" hidden>
+        <div id="qrCode"></div>
+        <p class="note">スマホでスキャンすると、同じ結果が見られます</p>
+      </div>
+      <div class="ai-guide" role="note">
+        <strong>✦ AIでカードを読んでみよう</strong>
+        <p>結果を「画像で保存」して、聞きたいことと一緒にChatGPTなどのAIへ見せると、カードの読み方を相談できます。</p>
+        <small>AIの読み取りは、答えを決めるものではありません。参考として楽しんでね。</small>
+      </div>
+      <div class="row">
+        <button class="btn" id="againBtn" type="button">新しく占う</button>
+        <button class="ghost" id="endBtn" type="button">占いを終える</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" hidden>
+  <img id="shotImg" alt="占いの結果">
+  <p class="note">画像を長押しすると保存できます</p>
+  <div class="row">
+    <a class="ghost" id="dlLink" download="tarot.png" href="#">ダウンロード</a>
+    <button class="ghost" id="closeShot" type="button">閉じる</button>
+  </div>
+</div>
+
+<script src="src/qrcode.js"></script>
+<script src="src/deck.js"></script>
+<script src="src/share.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>
