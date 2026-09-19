@@ -264,7 +264,19 @@ const SUITS_EN=["Wands","Cups","Swords","Pentacles"];
 const RANKS_EN=["Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Page","Knight","Queen","King"];
 function toRoman(n){const v=[1000,900,500,400,100,90,50,40,10,9,5,4,1],s=["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"];let r="";for(let i=0;i<v.length;i++)while(n>=v[i]){r+=s[i];n-=v[i]}return r}
 function cardNameEN(id){if(id<22){const n=MAJOR_EN[id];return id===0?n:`${n} (${toRoman(id)})`;}return `${RANKS_EN[(id-22)%14]} of ${SUITS_EN[Math.floor((id-22)/14)]}`}
-const AI_PREAMBLE="以下はライダー・ウェイト版タロットの結果です。自由線形スプレッドで、カードは引いた順に並んでいます。位置に固定の意味はありません。補足カードは、本体のカードを補う位置づけです。この内容だけをもとに、質問に対する解釈をお願いします。カードを追加したり引き直したりはしないでください。";
+const AI_PREAMBLE=`あなたはライダー・ウェイト・スミス（RWS）版タロットに基づいて、この結果を解釈してください。
+
+【このスプレッドの読み方】
+- 78枚のRWS版（大アルカナ22枚・小アルカナ56枚）を使用しています。
+- カードは引いた順番に並ぶ「自由線形スプレッド」です。各位置に「過去・現在・未来」などの固定された意味はありません。
+- まず各カードをRWS版の象徴と正位置／逆位置に沿って読み、その後、引いた順番をひとつの流れとしてつなげてください。
+- スート、数字、人物、色、向き、繰り返される象徴など、カード同士の関係も考慮してください。
+- 補足カードがある場合は、新しい結論として扱わず、本体カードの意味を明確にする補助として読んでください。
+- 質問がある場合は質問を中心に、全体像、現在の影響、これから意識できることの順で、わかりやすくまとめてください。
+- 未来を断定したり、不安をあおったりせず、相談者が自分で考えて行動を選べる表現にしてください。
+- 表示されたカードだけを使い、カードの追加、引き直し、架空のカード位置の追加はしないでください。
+
+日本語で、カードごとの短い説明のあとに、全体をまとめた解釈と実生活で意識できるヒントを伝えてください。`;
 function copyText(){
   const today=new Date();
   const dateStr=`${today.getFullYear()}.${today.getMonth()+1}.${today.getDate()}`;
@@ -272,7 +284,7 @@ function copyText(){
   const mainCards=S.drawn.slice(0,S.count);
   const extraCards=S.drawn.slice(S.count);
   const fmt=(c,prefix)=>`${prefix}${cardName(c.id).text} / ${cardNameEN(c.id)}　${c.rev?"逆位置":"正位置"}`;
-  let text=`【タロット占い結果】${dateStr}\n`;
+  let text=`【AIへの解釈依頼】\n${AI_PREAMBLE}\n\n【タロット占い結果】${dateStr}\n`;
   if(q)text+=q;
   text+=`${"─".repeat(24)}\n`;
   text+=mainCards.map((c,i)=>fmt(c,`${i+1}. `)).join("\n");
@@ -280,7 +292,7 @@ function copyText(){
     text+=`\n\n【補足カード】\n`;
     text+=extraCards.map((c,i)=>fmt(c,`補足${i+1}. `)).join("\n");
   }
-  text+=`\n${"─".repeat(24)}\n※ AI への提示文\n\n${AI_PREAMBLE}`;
+  text+=`\n${"─".repeat(24)}\n以上の条件で、この結果を解釈してください。`;
   const btn=$("copyBtn");
   navigator.clipboard.writeText(text).then(()=>{
     btn.textContent="コピーしました！";setTimeout(()=>{btn.textContent="テキストをコピー"},2000);
