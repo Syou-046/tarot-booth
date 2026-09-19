@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Zen+Old+Mincho:wght@600;900&display=swap">
-<link rel="stylesheet" href="src/styles.css">
+<link rel="stylesheet" href="src/styles.css?v=27">
 </head>
 <body>
 
@@ -24,24 +24,28 @@
     <div class="fan" id="fan"></div>
 
     <div class="panel" id="setup">
-      <details class="info-box" open>
-        <summary>占いの約束</summary>
-        <ul>
-          <li>占いは、今の気持ちを映すものです</li>
-          <li><ruby>運命<rt>うんめい</rt></ruby>には流れがありますが、あなたの行動も大切です</li>
-          <li>質問はできるだけ具体的にしてね</li>
-          <li>命に関わること、他の人の秘密、誰かを傷つけること、まだ受けていないテストの結果は占いません</li>
-          <li>同じ質問を何度も繰り返さないでね</li>
-          <li>もう答えが分かっていることは、占わなくても大丈夫</li>
-        </ul>
-      </details>
+      <div class="mode-switch" role="group" aria-label="利用モード">
+        <button type="button" class="mode-option selected" id="standardMode" aria-pressed="true">通常版</button>
+        <button type="button" class="mode-option" id="liveMode" aria-pressed="false">会場版</button>
+      </div>
+      <button class="rules-link" id="rulesBtn" type="button" aria-haspopup="dialog">✦ 占いの約束を見る</button>
 
-      <div class="field-col">
+      <div class="field-col" id="questionField">
         <label for="question">聞きたいこと（書かなくても大丈夫だよ）</label>
         <textarea id="question" maxlength="60" rows="2" placeholder="ここに書いてね"></textarea>
       </div>
 
-      <div class="field">
+      <div class="booth-questions" id="boothQuestions" hidden>
+        <p class="booth-heading">占いたいことを選んでね</p>
+        <div class="booth-question-list" role="group" aria-label="占いたいこと">
+          <button type="button" class="booth-question selected" data-question="今の私に必要なメッセージは？" aria-pressed="true">今の私に必要な<br>メッセージ</button>
+          <button type="button" class="booth-question" data-question="これからの恋愛について教えてください" aria-pressed="false">これからの<br>恋愛</button>
+          <button type="button" class="booth-question" data-question="仕事や勉強で、今意識することは？" aria-pressed="false">仕事・勉強で<br>意識すること</button>
+          <button type="button" class="booth-question" data-question="次の一歩を踏み出すためのヒントは？" aria-pressed="false">次の一歩への<br>ヒント</button>
+        </div>
+      </div>
+
+      <div class="field" id="countField">
         <span>引くカードの枚数</span>
         <div class="stepper">
           <button type="button" id="minus" aria-label="減らす">−</button>
@@ -51,16 +55,15 @@
         <span>枚</span>
       </div>
 
-      <details class="info-box">
-        <summary>カードの並べ方について</summary>
-        <p>選んだカードを順番に並べます。</p>
-        <p><strong>カードの見方：</strong></p>
-        <ul>
-          <li>自由に読む — 先にカードの<ruby>意味<rt>いみ</rt></ruby>を決めず、出たカードから感じ取ります</li>
-          <li>出来事の流れ — <ruby>原因<rt>げんいん</rt></ruby>・<ruby>経過<rt>けいか</rt></ruby>・<ruby>結果<rt>けっか</rt></ruby></li>
-          <li>時間の流れ — <ruby>過去<rt>かこ</rt></ruby>・<ruby>現在<rt>いま</rt></ruby>・<ruby>未来<rt>みらい</rt></ruby></li>
-        </ul>
-        <p>心の中で、どんなふうに読むか決めてね。どの方法でも、カードの出方は変わりません。</p>
+      <details class="info-box reading-guide">
+        <summary>カードの読み方</summary>
+        <p class="reading-intro">引いた順番に並びます。好きな読み方を選んでね。</p>
+        <div class="reading-options">
+          <div><strong>自由に読む</strong><span>カードから感じたことを大切にする</span></div>
+          <div><strong>出来事の流れ</strong><span>原因・経過・結果として読む</span></div>
+          <div><strong>時間の流れ</strong><span>過去・現在・未来として読む</span></div>
+        </div>
+        <p class="reading-closing">読み方を変えても、出るカードは変わりません。</p>
       </details>
 
       <button class="btn" id="startBtn" type="button">カードを引く</button>
@@ -71,22 +74,51 @@
       <div class="row">
         <button class="ghost" id="extraBtn" type="button">補足カードを引く</button>
         <button class="ghost" id="saveBtn" type="button">画像で保存</button>
-        <button class="ghost" id="qrBtn" type="button">QRコードで結果を持ち帰る</button>
-      </div>
-      <div id="qrArea" hidden>
-        <div id="qrCode"></div>
-        <p class="note">スマホでスキャンすると、同じ結果が見られます</p>
-      </div>
-      <div class="ai-guide" role="note">
-        <strong>✦ AIでカードを読んでみよう</strong>
-        <p>結果を「画像で保存」して、聞きたいことと一緒にChatGPTなどのAIへ見せると、カードの読み方を相談できます。</p>
-        <small>AIの読み取りは、答えを決めるものではありません。参考として楽しんでね。</small>
+        <button class="ghost" id="copyBtn" type="button">テキストをコピー</button>
+        <button class="ghost" id="aiBtn" type="button">✦ AIに解釈してもらう</button>
       </div>
       <div class="row">
         <button class="btn" id="againBtn" type="button">新しく占う</button>
         <button class="ghost" id="endBtn" type="button">占いを終える</button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="ai-overlay" id="aiOverlay" role="dialog" aria-modal="true" hidden>
+  <div class="ai-modal">
+    <div class="ai-modal-header">
+      <span>✦ AIの解釈</span>
+      <button class="ai-modal-close" id="aiClose" type="button">✕</button>
+    </div>
+    <div class="ai-key-row" id="aiKeyRow">
+      <input class="ai-key-input" id="aiKeyInput" type="password" placeholder="OpenAI API キーを入力（sk-proj-...）">
+      <button class="ghost" id="aiKeySave" type="button">保存</button>
+    </div>
+    <div class="ai-result" id="aiResult">
+      <p class="ai-result-text" id="aiResultText"></p>
+    </div>
+    <div class="ai-modal-foot">
+      <p class="note">AIの解釈は参考として楽しんでね。答えを決めるものではありません。</p>
+    </div>
+  </div>
+</div>
+
+<div class="rules-overlay" id="rulesOverlay" role="dialog" aria-modal="true" aria-labelledby="rulesTitle" hidden>
+  <button class="rules-skip" id="skipRules" type="button">スキップ</button>
+  <div class="rules-card">
+    <p class="rules-kicker">Before the reading</p>
+    <h2 id="rulesTitle">占いの約束</h2>
+    <ul class="rules-list">
+      <li>占いは、今の気持ちを映すものです</li>
+      <li>運命には流れがありますが、あなたの行動も大切です</li>
+      <li>質問はできるだけ具体的にしてね</li>
+      <li>命に関わること、他の人の秘密、誰かを傷つけること、まだ受けていないテストの結果は占いません</li>
+      <li>同じ質問を何度も繰り返さないでね</li>
+      <li>もう答えが分かっていることは、占わなくても大丈夫</li>
+    </ul>
+    <p class="rules-closing">約束を守って、カードを引いてね</p>
+    <button class="btn rules-close" id="closeRules" type="button">占いを始める</button>
   </div>
 </div>
 
@@ -99,9 +131,8 @@
   </div>
 </div>
 
-<script src="src/qrcode.js"></script>
 <script src="src/deck.js"></script>
 <script src="src/share.js"></script>
-<script src="src/app.js"></script>
+<script src="src/app.js?v=27"></script>
 </body>
 </html>
